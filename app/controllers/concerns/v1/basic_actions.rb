@@ -47,14 +47,17 @@ module V1::BasicActions
     id = params[:id]
     if id.blank?
       render_error("Missing #{klass}'s id", :bad_request)
-    else
-      model_object = klass.find_by_guid(id)
-      if model_object.blank?
-        render_error("Can't find a #{klass} with id: #{id}", :bad_request)
-      else
-        model_object.delete
+      return
+    end
+
+    if model_object = klass.find_by_guid(id)
+      if model_object.delete
         render_success(result: "The #{klass} with id: #{id} has been deleted")
+      else
+        render_error("Failed to delete a #{klass} with #{id}", :bad_request)
       end
+    else
+      render_error("Can't find a #{klass} with id: #{id}", :bad_request)
     end
   end
 
