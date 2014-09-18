@@ -1,6 +1,7 @@
 class Craft
   include Mongoid::Document
   extend Paramable
+  extend Searchable
 
   field :guid,        type: String
   field :type,        type: String
@@ -12,10 +13,6 @@ class Craft
   before_create :set_guid
 
   attr_readonly :guid
-
-  def self.find_by_guid(guid)
-    where(guid: guid).first
-  end
 
   def set_guid
     self.guid = 'A' + SecureRandom.hex
