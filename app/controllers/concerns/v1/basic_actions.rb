@@ -1,10 +1,12 @@
 module V1::BasicActions
 
+  # to set the model's class which is to be used in this controller
   def self.klass(model_name = nil)
     @klass = model_name.to_s.classify.constantize if model_name
     @klass
   end
 
+  # for internal use, for code aesthetic
   def klass
     V1::BasicActions.klass
   end
@@ -24,6 +26,8 @@ module V1::BasicActions
 
   def create(*require_params)
     create_params = {}
+    # each model has a different set of require fields at creation
+    # makes sure they present
     require_params.each do |rp|
       unless params.has_key?(rp)
         render_error("Missing #{klass}'s #{rp}", :bad_request)
