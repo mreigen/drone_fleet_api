@@ -32,7 +32,7 @@ class V1::CraftsController < ApplicationController
     else
       craft = Craft.find_by_guid(id)
       if craft.blank?
-        render_error("Can't find craft with id: #{id}", :bad_request)
+        render_error("Can't find a craft with id: #{id}", :bad_request)
       else
         craft.delete
         render_success(result: "craft with id: #{id} has been deleted")
@@ -40,4 +40,28 @@ class V1::CraftsController < ApplicationController
     end
   end
 
+  def update
+    id = params[:id]
+    if id.blank?
+      render_error("missing craft's id", :bad_request)
+    else
+      craft = Craft.find_by_guid(id)
+      if craft.blank?
+        render_error("Can't find a craft with id: #{id}", :bad_request)
+      else
+        if craft.update_attributes(craft_params)
+          render_success(result: craft)
+        else
+          render_error("Couldn't update craft with id: #{id}", :bad_request)
+        end
+      end
+    end
+  end
+
+  private
+
+  def craft_params
+    allowed_keys = Craft.allowed_keys_in_params(params)
+    params.permit(allowed_keys)
+  end
 end
