@@ -1,4 +1,19 @@
 Rails.application.routes.draw do
+
+  namespace :v1 do
+    resources :flights
+
+    resources :storages
+
+    resources :customers
+
+    resources :crafts
+
+    resources :projects
+
+    resources :models
+  end
+
   resources :flights
 
   resources :storages
