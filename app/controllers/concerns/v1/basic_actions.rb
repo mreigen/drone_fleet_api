@@ -65,17 +65,18 @@ module V1::BasicActions
     id = params[:id]
     if id.blank?
       render_error("Missing #{klass}'s id", :bad_request)
-    else
-      model_object = klass.find_by_guid(id)
-      if model_object.blank?
-        render_error("Can't find a #{klass} with id: #{id}", :bad_request)
+      return
+    end
+
+
+    if model_object = klass.find_by_guid(id)
+      if model_object.update_attributes(klass_params)
+        render_success(result: model_object)
       else
-        if model_object.update_attributes(klass_params)
-          render_success(result: model_object)
-        else
-          render_error("Couldn't update the #{klass} with id: #{id}", :bad_request)
-        end
+        render_error("Couldn't update the #{klass} with id: #{id}", :bad_request)
       end
+    else
+      render_error("Can't find a #{klass} with id: #{id}", :bad_request)
     end
   end
 
