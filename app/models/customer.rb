@@ -9,6 +9,8 @@ class Customer
 
   before_create :set_guid
 
+  attr_readonly :guid
+
   def set_guid
     self.guid = 'C' + SecureRandom.hex
   end

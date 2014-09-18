@@ -10,6 +10,11 @@ class Flight
   # ....
   # more telemetry data
 
+  validates :project_id,  presence: true
+  validates :craft_id,    presence: true
+
+  attr_readonly :guid
+
   before_create :set_guid
 
   def set_guid

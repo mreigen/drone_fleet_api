@@ -10,6 +10,9 @@ class Craft
 
   # more craft's data, could be other child models inherit from this
 
+  validates :type, presence: true
+  # TODO: other validations
+
   before_create :set_guid
 
   attr_readonly :guid
