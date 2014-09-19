@@ -1,9 +1,11 @@
 class V1::CraftsController < ApplicationController
   include V1::BasicActions
 
-  V1::BasicActions.klass(:craft)
+  before_filter :set_klass
 
-  def create
-    super(:type, :max_speed)
-  end
+  def create; super(:type, :max_speed); end
+
+  private
+
+  def set_klass; V1::BasicActions.set_klass(:craft); end
 end
