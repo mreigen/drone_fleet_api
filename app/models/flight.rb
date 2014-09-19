@@ -1,5 +1,6 @@
 class Flight
   include Mongoid::Document
+  extend Searchable
 
   field :guid,        type: String
   field :project_id,  type: String # proejct's guid

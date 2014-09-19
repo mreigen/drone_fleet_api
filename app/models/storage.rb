@@ -1,5 +1,6 @@
 class Storage
   include Mongoid::Document
+  extend Searchable
 
   field :guid,              type: String
   field :access_key,        type: String
