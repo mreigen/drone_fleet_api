@@ -1,5 +1,6 @@
 class Project
   include Mongoid::Document
+  extend Searchable
 
   field :guid,        type: String
   field :type,        type: String
