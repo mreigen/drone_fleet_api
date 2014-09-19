@@ -5,6 +5,10 @@ Rails.application.routes.draw do
 
     resources :storages
 
+    resources :customers do
+      post "add_project/:project_id" => "customers#add_project"
+    end
+
     resources :customers
 
     resources :crafts
