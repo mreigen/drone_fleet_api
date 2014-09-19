@@ -1,5 +1,6 @@
 class Flight
   include Mongoid::Document
+  extend Paramable
   extend Searchable
 
   field :guid,        type: String
