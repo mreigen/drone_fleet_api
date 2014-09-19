@@ -11,7 +11,13 @@ class Customer
 
   attr_readonly :guid
 
+  has_many :projects
+
   def set_guid
     self.guid = 'C' + SecureRandom.hex
+  end
+
+  def children
+    self.projects
   end
 end

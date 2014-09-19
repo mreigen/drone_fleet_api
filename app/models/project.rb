@@ -13,7 +13,14 @@ class Project
 
   before_create :set_guid
 
+  belongs_to :customer
+  has_many   :crafts
+
   def set_guid
     self.guid = 'P' + SecureRandom.hex
+  end
+
+  def children
+    self.crafts
   end
 end
