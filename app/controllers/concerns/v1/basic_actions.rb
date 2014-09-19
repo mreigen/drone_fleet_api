@@ -1,10 +1,11 @@
 module V1::BasicActions
 
   # to set the model's class which is to be used in this controller
-  def self.klass(model_name = nil)
-    @klass = model_name.to_s.classify.constantize if model_name
-    @klass
+  def self.set_klass(model_name)
+    @klass = model_name.to_s.classify.constantize
   end
+
+  def self.get_klass; @klass; end
 
   # for internal use, for code aesthetic
   def klass
@@ -68,7 +69,6 @@ module V1::BasicActions
       return
     end
 
-
     if model_object = klass.find_by_guid(id)
       if model_object.update_attributes(klass_params)
         render_success(result: model_object)
@@ -79,7 +79,6 @@ module V1::BasicActions
       render_error("Can't find a #{klass} with id: #{id}", :bad_request)
     end
   end
-
 
   protected
 
