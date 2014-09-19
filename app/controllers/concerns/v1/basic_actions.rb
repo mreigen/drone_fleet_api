@@ -9,7 +9,7 @@ module V1::BasicActions
 
   # for internal use, for code aesthetic
   def klass
-    V1::BasicActions.klass
+    V1::BasicActions.get_klass
   end
 
   def index
