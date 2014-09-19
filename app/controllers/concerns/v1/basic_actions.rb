@@ -16,12 +16,20 @@ module V1::BasicActions
     render_success(result: klass.all)
   end
 
-  def show
+  def show(sub_set_hsh = nil)
     guid = params[:id]
     if guid.blank?
       render_error("Missing #{klass}'s id", :bad_request)
     else
-      render_success(result: klass.find_by_guid(guid))
+      model_object = klass.find_by_guid(guid)
+      data = {result: model_object}
+      # if there is a sub_set passed in, include the sub_set (children) data
+      # in the response
+      if sub_set_hsh.present?
+        sub_set_klass = sub_set_hsh[:sub_set].to_s.classify.constantize
+        data.merge!(sub_set_hsh[:sub_set].to_sym => model_object.children)
+      end
+      render_success(data)
     end
   end
 
