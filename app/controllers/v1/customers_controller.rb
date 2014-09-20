@@ -1,5 +1,6 @@
 class V1::CustomersController < ApplicationController
   include V1::BasicActions
+  extend  V1::SwaggerBasicActionsConfig
 
   before_filter :set_klass
 
@@ -15,48 +16,9 @@ class V1::CustomersController < ApplicationController
     render_success result: {customer: customer, projects: customer.projects}
   end
 
-  private def set_klass; V1::BasicActions.set_klass(:customer); end
+  private
 
-  swagger_controller :customers, "Customer Management"
+  def set_klass; V1::BasicActions.set_klass(:project); end
 
-  swagger_api :index do
-    summary "Fetches all customers"
-    notes "This lists all the active customers"
-    response 200, "Success", :Customers
-    # response :unauthorized
-    response :bad_request
-  end
-
-  swagger_api :show do
-    summary "Fetches a single customer"
-    param :path, :id, :string, :required, "customer Id"
-    response 200, "Success", :customer
-    # response :unauthorized
-    response :bad_request
-  end
-
-  swagger_api :create do
-    summary "Creates a new customer"
-    param :form, :name, :string, :required, "customer name"
-    response 200, "Success", :customer
-    # response :unauthorized
-    response :bad_request
-  end
-
-  swagger_api :update do
-    summary "Updates an existing customer"
-    param :path, :id, :string, :required, "User Id"
-    param :form, :name, :string, :optional, "customer name"
-    response 200, "Success", :customer
-    # response :unauthorized
-    response :bad_request
-  end
-
-  swagger_api :destroy do
-    summary "Deletes an existing customer"
-    param :path, :id, :string, :required, "customer Id"
-    response 200, "Success", :customer
-    # response :unauthorized
-    response :bad_request
-  end
+  swagger_configure_basic_actions
 end
