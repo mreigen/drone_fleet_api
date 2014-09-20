@@ -8,7 +8,6 @@ class Project
   field :craft_id,    type: String # craft's guid
 
   validates :type,      presence: true
-  validates :craft_id,  presence: true
 
   attr_readonly :guid
 
