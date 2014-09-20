@@ -1,0 +1,169 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "http://localhost:2001/",
+  "resourcePath": "crafts",
+  "apis": [
+    {
+      "path": "v1/crafts",
+      "operations": [
+        {
+          "summary": "Fetches all Crafts",
+          "notes": "This lists all active Crafts",
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": "Crafts",
+              "message": "Success"
+            },
+            {
+              "code": 400,
+              "responseModel": null,
+              "message": "Bad Request"
+            }
+          ],
+          "method": "get",
+          "nickname": "V1::Crafts#index"
+        }
+      ]
+    },
+    {
+      "path": "v1/crafts",
+      "operations": [
+        {
+          "summary": "Creates a new Craft",
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": "#<Class:0x0000010b2f1bb8>",
+              "message": "Success"
+            },
+            {
+              "code": 400,
+              "responseModel": null,
+              "message": "Bad Request"
+            }
+          ],
+          "parameters": [
+            {
+              "paramType": "form",
+              "name": "type",
+              "type": "string",
+              "description": "Craft's type",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "max_speed",
+              "type": "float",
+              "description": "Craft's max_speed",
+              "required": true
+            }
+          ],
+          "method": "post",
+          "nickname": "V1::Crafts#create"
+        }
+      ]
+    },
+    {
+      "path": "v1/crafts/{id}",
+      "operations": [
+        {
+          "summary": "Fetches a single Craft",
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": "#<Class:0x0000010b3109c8>",
+              "message": "Success"
+            },
+            {
+              "code": 400,
+              "responseModel": null,
+              "message": "Bad Request"
+            }
+          ],
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "string",
+              "description": "Craft Id",
+              "required": true
+            }
+          ],
+          "method": "get",
+          "nickname": "V1::Crafts#show"
+        }
+      ]
+    },
+    {
+      "path": "v1/crafts/{id}",
+      "operations": [
+        {
+          "summary": "Updates an existing Craft",
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": "#<Class:0x0000010b321598>",
+              "message": "Success"
+            },
+            {
+              "code": 400,
+              "responseModel": null,
+              "message": "Bad Request"
+            }
+          ],
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "string",
+              "description": "User Id",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "name",
+              "type": "string",
+              "description": "Craft name",
+              "required": false
+            }
+          ],
+          "method": "patch",
+          "nickname": "V1::Crafts#update"
+        }
+      ]
+    },
+    {
+      "path": "v1/crafts/{id}",
+      "operations": [
+        {
+          "summary": "Deletes an existing Craft",
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": "#<Class:0x0000010b331ab0>",
+              "message": "Success"
+            },
+            {
+              "code": 400,
+              "responseModel": null,
+              "message": "Bad Request"
+            }
+          ],
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "string",
+              "description": "Craft Id",
+              "required": true
+            }
+          ],
+          "method": "delete",
+          "nickname": "V1::Crafts#destroy"
+        }
+      ]
+    }
+  ]
+}

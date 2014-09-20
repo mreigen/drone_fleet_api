@@ -1,0 +1,19 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "http://minhreigen.com/",
+  "apis": [
+    {
+      "path": "v1/customers.{format}",
+      "description": "Customer Management"
+    }
+  ],
+  "info": {
+    "title": "Airware mock API",
+    "description": "I'd like to fantasize with the idea of having the API which connects data from drones' telemetry with projects and clients. Also I want to play around with the idea of streaming video through HTTP API :)",
+    "termsOfServiceUrl": "http://minhreigen.com/",
+    "contact": "mreigen@gmail.com",
+    "license": "Free",
+    "licenseUrl": "http://minhreigen.com"
+  }
+}

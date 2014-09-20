@@ -1,0 +1,35 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "http://localhost:2001/",
+  "apis": [
+    {
+      "path": "v1/flights.{format}",
+      "description": "Flight Management"
+    },
+    {
+      "path": "v1/storages.{format}",
+      "description": "Storage Management"
+    },
+    {
+      "path": "v1/customers.{format}",
+      "description": "Customer Management"
+    },
+    {
+      "path": "v1/crafts.{format}",
+      "description": "Craft Management"
+    },
+    {
+      "path": "v1/projects.{format}",
+      "description": "Project Management"
+    }
+  ],
+  "info": {
+    "title": "Airware mock API",
+    "description": "I'd like to fantasize on the idea of having the API which connects data from drones' telemetry with projects and clients. Also I want to play around with the idea of streaming video through HTTP API :)",
+    "termsOfServiceUrl": "http://minhreigen.com/",
+    "contact": "mreigen@gmail.com",
+    "license": "Free",
+    "licenseUrl": "http://minhreigen.com"
+  }
+}
