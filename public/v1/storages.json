@@ -2,18 +2,18 @@
   "apiVersion": "1.0",
   "swaggerVersion": "1.2",
   "basePath": "http://localhost:2001/",
-  "resourcePath": "customers",
+  "resourcePath": "storages",
   "apis": [
     {
-      "path": "v1/customers",
+      "path": "v1/storages",
       "operations": [
         {
-          "summary": "Fetches all Customers",
-          "notes": "This lists all active Customers",
+          "summary": "Fetches all Storages",
+          "notes": "This lists all active Storages",
           "responseMessages": [
             {
               "code": 200,
-              "responseModel": "Customers",
+              "responseModel": "Storages",
               "message": "Success"
             },
             {
@@ -23,19 +23,19 @@
             }
           ],
           "method": "get",
-          "nickname": "V1::Customers#index"
+          "nickname": "V1::Storages#index"
         }
       ]
     },
     {
-      "path": "v1/customers",
+      "path": "v1/storages",
       "operations": [
         {
-          "summary": "Creates a new Customer",
+          "summary": "Creates a new Storage",
           "responseMessages": [
             {
               "code": 200,
-              "responseModel": "#<Class:0x0000010b200ec0>",
+              "responseModel": "#<Class:0x0000010b1219f0>",
               "message": "Success"
             },
             {
@@ -47,26 +47,40 @@
           "parameters": [
             {
               "paramType": "form",
-              "name": "name",
+              "name": "access_key",
               "type": "string",
-              "description": "Customer's name",
+              "description": "Storage's access_key",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "access_password",
+              "type": "string",
+              "description": "Storage's access_password",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "customer_id",
+              "type": "string",
+              "description": "Storage's customer Id",
               "required": true
             }
           ],
           "method": "post",
-          "nickname": "V1::Customers#create"
+          "nickname": "V1::Storages#create"
         }
       ]
     },
     {
-      "path": "v1/customers/{id}",
+      "path": "v1/storages/{id}",
       "operations": [
         {
-          "summary": "Fetches a single Customer",
+          "summary": "Fetches a single Storage",
           "responseMessages": [
             {
               "code": 200,
-              "responseModel": "#<Class:0x0000010b2200b8>",
+              "responseModel": "#<Class:0x0000010b140530>",
               "message": "Success"
             },
             {
@@ -80,24 +94,24 @@
               "paramType": "path",
               "name": "id",
               "type": "string",
-              "description": "Customer Id",
+              "description": "Storage Id",
               "required": true
             }
           ],
           "method": "get",
-          "nickname": "V1::Customers#show"
+          "nickname": "V1::Storages#show"
         }
       ]
     },
     {
-      "path": "v1/customers/{id}",
+      "path": "v1/storages/{id}",
       "operations": [
         {
-          "summary": "Updates an existing Customer",
+          "summary": "Updates an existing Storage",
           "responseMessages": [
             {
               "code": 200,
-              "responseModel": "#<Class:0x0000010b230d50>",
+              "responseModel": "#<Class:0x0000010b1511a0>",
               "message": "Success"
             },
             {
@@ -118,24 +132,24 @@
               "paramType": "form",
               "name": "name",
               "type": "string",
-              "description": "Customer name",
+              "description": "Storage name",
               "required": false
             }
           ],
           "method": "patch",
-          "nickname": "V1::Customers#update"
+          "nickname": "V1::Storages#update"
         }
       ]
     },
     {
-      "path": "v1/customers/{id}",
+      "path": "v1/storages/{id}",
       "operations": [
         {
-          "summary": "Deletes an existing Customer",
+          "summary": "Deletes an existing Storage",
           "responseMessages": [
             {
               "code": 200,
-              "responseModel": "#<Class:0x0000010b241330>",
+              "responseModel": "#<Class:0x0000010b1617a8>",
               "message": "Success"
             },
             {
@@ -149,12 +163,12 @@
               "paramType": "path",
               "name": "id",
               "type": "string",
-              "description": "Customer Id",
+              "description": "Storage Id",
               "required": true
             }
           ],
           "method": "delete",
-          "nickname": "V1::Customers#destroy"
+          "nickname": "V1::Storages#destroy"
         }
       ]
     }

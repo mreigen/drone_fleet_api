@@ -4,8 +4,24 @@
   "basePath": "http://localhost:2001/",
   "apis": [
     {
+      "path": "v1/flights.{format}",
+      "description": "Flight Management"
+    },
+    {
+      "path": "v1/storages.{format}",
+      "description": "Storage Management"
+    },
+    {
       "path": "v1/customers.{format}",
       "description": "Customer Management"
+    },
+    {
+      "path": "v1/crafts.{format}",
+      "description": "Craft Management"
+    },
+    {
+      "path": "v1/projects.{format}",
+      "description": "Project Management"
     }
   ],
   "info": {

@@ -2,18 +2,18 @@
   "apiVersion": "1.0",
   "swaggerVersion": "1.2",
   "basePath": "http://localhost:2001/",
-  "resourcePath": "customers",
+  "resourcePath": "flights",
   "apis": [
     {
-      "path": "v1/customers",
+      "path": "v1/flights",
       "operations": [
         {
-          "summary": "Fetches all Customers",
-          "notes": "This lists all active Customers",
+          "summary": "Fetches all Flights",
+          "notes": "This lists all active Flights",
           "responseMessages": [
             {
               "code": 200,
-              "responseModel": "Customers",
+              "responseModel": "Flights",
               "message": "Success"
             },
             {
@@ -23,19 +23,19 @@
             }
           ],
           "method": "get",
-          "nickname": "V1::Customers#index"
+          "nickname": "V1::Flights#index"
         }
       ]
     },
     {
-      "path": "v1/customers",
+      "path": "v1/flights",
       "operations": [
         {
-          "summary": "Creates a new Customer",
+          "summary": "Creates a new Flight",
           "responseMessages": [
             {
               "code": 200,
-              "responseModel": "#<Class:0x0000010b200ec0>",
+              "responseModel": "#<Class:0x0000010b0497d0>",
               "message": "Success"
             },
             {
@@ -47,26 +47,33 @@
           "parameters": [
             {
               "paramType": "form",
-              "name": "name",
+              "name": "project_id",
               "type": "string",
-              "description": "Customer's name",
+              "description": "Flight's project Id",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "craft_id",
+              "type": "float",
+              "description": "Flight's craft Id",
               "required": true
             }
           ],
           "method": "post",
-          "nickname": "V1::Customers#create"
+          "nickname": "V1::Flights#create"
         }
       ]
     },
     {
-      "path": "v1/customers/{id}",
+      "path": "v1/flights/{id}",
       "operations": [
         {
-          "summary": "Fetches a single Customer",
+          "summary": "Fetches a single Flight",
           "responseMessages": [
             {
               "code": 200,
-              "responseModel": "#<Class:0x0000010b2200b8>",
+              "responseModel": "#<Class:0x0000010b0685b8>",
               "message": "Success"
             },
             {
@@ -80,24 +87,24 @@
               "paramType": "path",
               "name": "id",
               "type": "string",
-              "description": "Customer Id",
+              "description": "Flight Id",
               "required": true
             }
           ],
           "method": "get",
-          "nickname": "V1::Customers#show"
+          "nickname": "V1::Flights#show"
         }
       ]
     },
     {
-      "path": "v1/customers/{id}",
+      "path": "v1/flights/{id}",
       "operations": [
         {
-          "summary": "Updates an existing Customer",
+          "summary": "Updates an existing Flight",
           "responseMessages": [
             {
               "code": 200,
-              "responseModel": "#<Class:0x0000010b230d50>",
+              "responseModel": "#<Class:0x0000010b079160>",
               "message": "Success"
             },
             {
@@ -118,24 +125,24 @@
               "paramType": "form",
               "name": "name",
               "type": "string",
-              "description": "Customer name",
+              "description": "Flight name",
               "required": false
             }
           ],
           "method": "patch",
-          "nickname": "V1::Customers#update"
+          "nickname": "V1::Flights#update"
         }
       ]
     },
     {
-      "path": "v1/customers/{id}",
+      "path": "v1/flights/{id}",
       "operations": [
         {
-          "summary": "Deletes an existing Customer",
+          "summary": "Deletes an existing Flight",
           "responseMessages": [
             {
               "code": 200,
-              "responseModel": "#<Class:0x0000010b241330>",
+              "responseModel": "#<Class:0x0000010b089650>",
               "message": "Success"
             },
             {
@@ -149,12 +156,12 @@
               "paramType": "path",
               "name": "id",
               "type": "string",
-              "description": "Customer Id",
+              "description": "Flight Id",
               "required": true
             }
           ],
           "method": "delete",
-          "nickname": "V1::Customers#destroy"
+          "nickname": "V1::Flights#destroy"
         }
       ]
     }
