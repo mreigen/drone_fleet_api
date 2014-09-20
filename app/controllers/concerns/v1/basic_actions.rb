@@ -18,6 +18,10 @@ module V1::BasicActions
 
   def show(sub_set_hsh = nil)
     model_object = klass.find_by_guid(params[:id])
+    if model_object.blank?
+      render_error("Can't find #{klass} with id: #{params[:id]}")
+      return
+    end
     data = {result: model_object}
     # if there is a sub_set passed in, include the sub_set (children) data
     # in the response

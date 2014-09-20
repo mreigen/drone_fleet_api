@@ -20,6 +20,14 @@ RSpec.describe V1::CustomersController, type: :controller do
   end
 
   describe "GET show" do
+    context "when it can't find a customer with id" do
+      it "returns error" do
+        expect(Customer).to receive(:find_by_guid).with("123") { nil }
+        expect(controller).to receive(:render_error).with("Can't find Customer with id: 123").and_call_original
+
+        get :show, id: 123
+      end
+    end
     it "returns the correct customer" do
       expect(Customer).to receive(:find_by_guid) { customer_1 }
       expect(customer_1).to receive(:children)

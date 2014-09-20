@@ -19,6 +19,14 @@ RSpec.describe V1::StoragesController, type: :controller do
   end
 
   describe "GET show" do
+    context "when it can't find a storage with id" do
+      it "returns error" do
+        expect(Storage).to receive(:find_by_guid).with("123") { nil }
+        expect(controller).to receive(:render_error).with("Can't find Storage with id: 123").and_call_original
+
+        get :show, id: 123
+      end
+    end
     it "returns the correct storage" do
       expect(Storage).to receive(:find_by_guid) { storage_1 }
       expect(controller).to receive(:render_success).with(result: storage_1).and_call_original
