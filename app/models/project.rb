@@ -15,6 +15,7 @@ class Project
 
   belongs_to :customer
   has_many   :crafts
+  has_many   :flights
 
   def set_guid
     self.guid = "P#{SecureRandom.hex}"

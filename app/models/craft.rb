@@ -18,6 +18,7 @@ class Craft
   attr_readonly :guid
 
   belongs_to :project
+  has_many :flights
 
   def set_guid
     self.guid = "A#{SecureRandom.hex}"

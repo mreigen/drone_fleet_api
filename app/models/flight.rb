@@ -4,7 +4,7 @@ class Flight
   extend Searchable
 
   field :guid,        type: String
-  field :project_id,  type: String # proejct's guid
+  field :project_id,  type: String # project's guid
   field :craft_id,    type: String # craft's guid
   field :avg_speed,   type: Float
   field :avg_height,  type: Float
@@ -16,6 +16,9 @@ class Flight
   validates :craft_id,    presence: true
 
   attr_readonly :guid
+
+  belongs_to :craft
+  belongs_to :project
 
   before_create :set_guid
 
