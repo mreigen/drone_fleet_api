@@ -20,6 +20,6 @@ class Flight
   before_create :set_guid
 
   def set_guid
-    self.guid = 'F' + SecureRandom.hex
+    self.guid = "F#{SecureRandom.hex}"
   end
 end

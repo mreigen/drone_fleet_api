@@ -18,7 +18,7 @@ class Project
   has_many   :crafts
 
   def set_guid
-    self.guid = 'P' + SecureRandom.hex
+    self.guid = "P#{SecureRandom.hex}"
   end
 
   def children

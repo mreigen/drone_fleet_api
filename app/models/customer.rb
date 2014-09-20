@@ -15,7 +15,7 @@ class Customer
   has_many :projects
 
   def set_guid
-    self.guid = 'C' + SecureRandom.hex
+    self.guid = "C#{SecureRandom.hex}"
   end
 
   def children

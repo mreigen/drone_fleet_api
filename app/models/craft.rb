@@ -20,6 +20,6 @@ class Craft
   belongs_to :project
 
   def set_guid
-    self.guid = 'A' + SecureRandom.hex
+    self.guid = "A#{SecureRandom.hex}"
   end
 end

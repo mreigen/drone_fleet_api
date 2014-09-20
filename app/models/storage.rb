@@ -17,6 +17,6 @@ class Storage
   before_create :set_guid
 
   def set_guid
-    self.guid = 'S' + SecureRandom.hex
+    self.guid = "S#{SecureRandom.hex}"
   end
 end
