@@ -7,6 +7,13 @@ gem 'rails', '4.1.6'
 
 gem 'swagger-docs'
 
+gem 'capistrano'
+gem 'capistrano-bundler'
+gem 'capistrano-rails'
+gem 'capistrano-rvm'
+
+gem 'highline'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.2'
 # Use Uglifier as compressor for JavaScript assets
