@@ -5,7 +5,8 @@ Swagger::Docs::Config.register_apis({
     # the output location where your .json files are written to
     :api_file_path => "public",
     # the URL base path to your API
-    :base_path => "http://localhost:2001/",
+    # hack with localhost env and ip
+    :base_path => ENV['LOCALHOST'] == "true" ? "http://localhost:2001/" : "http://74.207.247.126:3001/",
     # if you want to delete all .json files at each generation
     :clean_directory => false,
     # add custom attributes to api-docs
