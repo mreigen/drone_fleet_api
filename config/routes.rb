@@ -6,14 +6,17 @@ Rails.application.routes.draw do
     resources :storages
 
     resources :customers do
-      post "add_project/:project_id" => "customers#add_project"
-      delete "remove_project/:project_id" => "customers#remove_project"
+      post    "add_project/:project_id"     => "customers#add_project"
+      delete  "remove_project/:project_id"  => "customers#remove_project"
     end
-
     resources :customers
 
     resources :crafts
 
+    resources :projects do
+      post    "add_craft/:craft_id"     => "projects#add_craft"
+      delete  "remove_craft/:craft_id"  => "projects#remove_craft"
+    end
     resources :projects
 
     resources :models
