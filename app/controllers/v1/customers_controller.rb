@@ -4,16 +4,43 @@ class V1::CustomersController < ApplicationController
 
   before_filter :set_klass
 
+  # ===================================================================
+  # The rest of the common actions are implemented inside BasicAtions.
+  # Only actions that are taylored to the need of this controller
+  # are implemented here.
+  # ===================================================================
+
   def create; super(:name); end
 
   def show; super(sub_set: :projects); end
 
   def add_project
-    project   = Project.find_by_guid(params[:project_id])
-    customer  = Customer.find_by_guid(params[:customer_id])
+    project_id  = params[:project_id]
+    customer_id = params[:customer_id]
+    if project_id.blank? || customer_id.blank?
+      render_error "Either project_id or customer_id is blank"
+      return
+    end
+
+    project   = Project.find_by_guid(project_id)
+    if project.blank?
+      render_error "Can't find project with project_id: #{project_id}"
+      return
+    end
+
+    customer  = Customer.find_by_guid(customer_id)
+    if customer.blank?
+      render_error "Can't find customer with customer_id: #{customer_id}"
+      return
+    end
+
     project.customer = customer
-    project.save
-    render_success result: {customer: customer, projects: customer.projects}
+
+    if project.save
+      render_success result: {customer: customer, projects: customer.projects}
+    else
+      render_error "Can't add project_id #{project_id} to customer_id #{customer_id}"
+    end
   end
 
   private

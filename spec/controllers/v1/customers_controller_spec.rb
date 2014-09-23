@@ -39,4 +39,79 @@ RSpec.describe V1::CustomersController, type: :controller do
       expect(customer_1.name).to eq "blah"
     end
   end
+
+  describe "POST add_project" do
+    let(:customer)  { Customer.new(name: "test customer") }
+    let(:project)   { Project.new(type: "test") }
+    before do
+      allow(Customer).to receive(:find_by_guid) { customer }
+      allow(Project).to  receive(:find_by_guid) { project }
+    end
+
+    def post_add_project(project_id, customer_id)
+      post :add_project, project_id: project_id, customer_id: customer_id
+    end
+
+    context "when there is no project id provided" do
+      let(:project_id)  { "" }
+      let(:customer_id) { "123" }
+      it "renders error" do
+        expect(controller).to receive(:render_error)
+          .with("Either project_id or customer_id is blank").and_call_original
+        post_add_project(project_id, customer_id)
+      end
+    end
+    context "when there is no customer id provided" do
+      let(:project_id)  { "abc" }
+      let(:customer_id) { "" }
+      it "renders error" do
+        expect(controller).to receive(:render_error)
+          .with("Either project_id or customer_id is blank").and_call_original
+        post_add_project(project_id, customer_id)
+      end
+    end
+    context "when there is no project found" do
+      let(:project_id)  { "abc" }
+      let(:customer_id) { "123" }
+      before do
+        allow(Project).to receive(:find_by_guid).with("abc")  { nil }
+      end
+      it "renders error" do
+        expect(controller).to receive(:render_error)
+          .with("Can't find project with project_id: abc").and_call_original
+        post_add_project(project_id, customer_id)
+      end
+    end
+    context "when there is no customer found" do
+      let(:project_id)  { "abc" }
+      let(:customer_id) { "123" }
+      before do
+        allow(Customer).to receive(:find_by_guid).with("123") { nil }
+      end
+      it "renders error" do
+        expect(controller).to receive(:render_error)
+          .with("Can't find customer with customer_id: 123").and_call_original
+        post_add_project(project_id, customer_id)
+      end
+    end
+    context "when both project and customer exist" do
+      let(:project_id)  { "abc" }
+      let(:customer_id) { "123" }
+      before do
+        allow(Customer).to receive(:find_by_guid).with("123") { customer }
+        allow(Project).to receive(:find_by_guid).with("abc") { project }
+      end
+      it "adds project to customer" do
+        post_add_project(project_id, customer_id)
+
+        expect(project.customer).to eq customer
+        expect(customer.projects).to include project
+      end
+      it "renders success" do
+        expect(controller).to receive(:render_success).and_call_original
+        post_add_project(project_id, customer_id)
+      end
+    end
+  end # add_project
+
 end
