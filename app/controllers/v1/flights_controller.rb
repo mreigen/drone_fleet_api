@@ -5,6 +5,12 @@ class V1::FlightsController < ApplicationController
 
   before_filter :set_klass
 
+  # ===================================================================
+  # The rest of the common actions are implemented inside BasicAtions.
+  # Only actions that are taylored to the need of this controller
+  # are implemented here.
+  # ===================================================================
+
   def create; super(:project_id, :craft_id); end
 
   private
