@@ -35,7 +35,7 @@
           "responseMessages": [
             {
               "code": 200,
-              "responseModel": "#<Class:0x0000010b0497d0>",
+              "responseModel": "#<Class:0x00000109021a98>",
               "message": "Success"
             },
             {
@@ -73,7 +73,7 @@
           "responseMessages": [
             {
               "code": 200,
-              "responseModel": "#<Class:0x0000010b0685b8>",
+              "responseModel": "#<Class:0x00000109040880>",
               "message": "Success"
             },
             {
@@ -104,7 +104,7 @@
           "responseMessages": [
             {
               "code": 200,
-              "responseModel": "#<Class:0x0000010b079160>",
+              "responseModel": "#<Class:0x00000109051428>",
               "message": "Success"
             },
             {
@@ -142,7 +142,7 @@
           "responseMessages": [
             {
               "code": 200,
-              "responseModel": "#<Class:0x0000010b089650>",
+              "responseModel": "#<Class:0x00000109061918>",
               "message": "Success"
             },
             {

@@ -77,4 +77,26 @@ class V1::CustomersController < ApplicationController
   def set_klass; V1::BasicActions.set_klass(:customer); end
 
   swagger_configure_basic_actions
+  #
+  # Similar to the controller's actions, the documentation config for
+  # the basic actions are refactored inside swagger_basic_actions_config.rb
+  # Belows are the documentation configs for custom actions.
+  #
+  swagger_api :add_project do
+    summary "Adds a project to the customer"
+    param :path, :project_id, :string, :required, "Project's Id"
+    param :path, :customer_id,:string, :required, "Customer's Id"
+    response 200, "Success", :Cusomer
+    # response :unauthorized
+    response :bad_request
+  end
+
+  swagger_api :remove_project do
+    summary "Removes a project from the customer"
+    param :path, :project_id, :string, :required, "Project's Id"
+    param :path, :customer_id,:string, :required, "Customer's Id"
+    response 200, "Success", :Cusomer
+    # response :unauthorized
+    response :bad_request
+  end
 end

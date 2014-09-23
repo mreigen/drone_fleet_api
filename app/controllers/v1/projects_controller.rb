@@ -136,5 +136,46 @@ class V1::ProjectsController < ApplicationController
     V1::BasicActions.set_klass(:project)
   end
 
+
   swagger_configure_basic_actions
+  #
+  # Similar to the controller's actions, the documentation config for
+  # the basic actions are refactored inside swagger_basic_actions_config.rb
+  # Belows are the documentation configs for custom actions.
+  #
+  swagger_api :add_craft do
+    summary "Adds a craft to the project"
+    param :path, :project_id, :string, :required, "Project's Id"
+    param :path, :craft_id,   :string, :required, "Craft's Id"
+    response 200, "Success", :Project
+    # response :unauthorized
+    response :bad_request
+  end
+
+  swagger_api :remove_craft do
+    summary "Removes a craft from the project"
+    param :path, :project_id, :string, :required, "Project's Id"
+    param :path, :craft_id,   :string, :required, "Craft's Id"
+    response 200, "Success", :Project
+    # response :unauthorized
+    response :bad_request
+  end
+
+  swagger_api :add_flight do
+    summary "Adds a flight to the project"
+    param :path, :project_id, :string, :required, "Project's Id"
+    param :path, :flight_id,  :string, :required, "Flight's Id"
+    response 200, "Success", :Project
+    # response :unauthorized
+    response :bad_request
+  end
+
+  swagger_api :remove_flight do
+    summary "Removes a flight from the project"
+    param :path, :project_id, :string, :required, "Project's Id"
+    param :path, :flight_id,  :string, :required, "Flight's Id"
+    response 200, "Success", :Project
+    # response :unauthorized
+    response :bad_request
+  end
 end

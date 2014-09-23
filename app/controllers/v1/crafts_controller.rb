@@ -25,4 +25,16 @@ class V1::CraftsController < ApplicationController
   def set_klass; V1::BasicActions.set_klass(:craft); end
 
   swagger_configure_basic_actions
+  #
+  # Similar to the controller's actions, the documentation config for
+  # the basic actions are refactored inside swagger_basic_actions_config.rb
+  # Belows are the documentation configs for custom actions.
+  #
+  swagger_api :add_project do
+    # TODO
+  end
+
+  swagger_api :remove_project do
+    # TODO
+  end
 end

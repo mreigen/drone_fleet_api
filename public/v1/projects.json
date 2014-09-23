@@ -5,6 +5,158 @@
   "resourcePath": "projects",
   "apis": [
     {
+      "path": "v1/projects/{project_id}/add_craft/{craft_id}",
+      "operations": [
+        {
+          "summary": "Adds a craft to the project",
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": "Project",
+              "message": "Success"
+            },
+            {
+              "code": 400,
+              "responseModel": null,
+              "message": "Bad Request"
+            }
+          ],
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "project_id",
+              "type": "string",
+              "description": "Project's Id",
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "craft_id",
+              "type": "string",
+              "description": "Craft's Id",
+              "required": true
+            }
+          ],
+          "method": "post",
+          "nickname": "V1::Projects#add_craft"
+        }
+      ]
+    },
+    {
+      "path": "v1/projects/{project_id}/remove_craft/{craft_id}",
+      "operations": [
+        {
+          "summary": "Removes a craft from the project",
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": "Project",
+              "message": "Success"
+            },
+            {
+              "code": 400,
+              "responseModel": null,
+              "message": "Bad Request"
+            }
+          ],
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "project_id",
+              "type": "string",
+              "description": "Project's Id",
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "craft_id",
+              "type": "string",
+              "description": "Craft's Id",
+              "required": true
+            }
+          ],
+          "method": "delete",
+          "nickname": "V1::Projects#remove_craft"
+        }
+      ]
+    },
+    {
+      "path": "v1/projects/{project_id}/add_flight/{flight_id}",
+      "operations": [
+        {
+          "summary": "Adds a flight to the project",
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": "Project",
+              "message": "Success"
+            },
+            {
+              "code": 400,
+              "responseModel": null,
+              "message": "Bad Request"
+            }
+          ],
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "project_id",
+              "type": "string",
+              "description": "Project's Id",
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "flight_id",
+              "type": "string",
+              "description": "Flight's Id",
+              "required": true
+            }
+          ],
+          "method": "post",
+          "nickname": "V1::Projects#add_flight"
+        }
+      ]
+    },
+    {
+      "path": "v1/projects/{project_id}/remove_flight/{flight_id}",
+      "operations": [
+        {
+          "summary": "Removes a flight from the project",
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": "Project",
+              "message": "Success"
+            },
+            {
+              "code": 400,
+              "responseModel": null,
+              "message": "Bad Request"
+            }
+          ],
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "project_id",
+              "type": "string",
+              "description": "Project's Id",
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "flight_id",
+              "type": "string",
+              "description": "Flight's Id",
+              "required": true
+            }
+          ],
+          "method": "delete",
+          "nickname": "V1::Projects#remove_flight"
+        }
+      ]
+    },
+    {
       "path": "v1/projects",
       "operations": [
         {
@@ -35,7 +187,7 @@
           "responseMessages": [
             {
               "code": 200,
-              "responseModel": "#<Class:0x0000010b3c8438>",
+              "responseModel": "#<Class:0x00000109191590>",
               "message": "Success"
             },
             {
@@ -66,7 +218,7 @@
           "responseMessages": [
             {
               "code": 200,
-              "responseModel": "#<Class:0x0000010b3f3430>",
+              "responseModel": "#<Class:0x00000109152980>",
               "message": "Success"
             },
             {
@@ -97,7 +249,7 @@
           "responseMessages": [
             {
               "code": 200,
-              "responseModel": "#<Class:0x0000010b403ee8>",
+              "responseModel": "#<Class:0x0000010913af10>",
               "message": "Success"
             },
             {
@@ -135,7 +287,7 @@
           "responseMessages": [
             {
               "code": 200,
-              "responseModel": "#<Class:0x0000010b408380>",
+              "responseModel": "#<Class:0x00000109122460>",
               "message": "Success"
             },
             {
