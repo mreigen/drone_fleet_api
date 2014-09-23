@@ -26,7 +26,7 @@
   ],
   "info": {
     "title": "Airware mock API",
-    "description": "I'd like to fantasize on the idea of having the API which connects data from drones' telemetry with projects and clients. Also I want to play around with the idea of streaming video through HTTP API :)",
+    "description": "I'd like to fantasize on the idea of having an API that connects data from drones' telemetry with projects, flights and clients. Also I want to play around with the idea of streaming video through HTTP API, and upload/download to/from S3 :)",
     "termsOfServiceUrl": "http://minhreigen.com/",
     "contact": "mreigen@gmail.com",
     "license": "Free",

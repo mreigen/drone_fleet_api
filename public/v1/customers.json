@@ -5,6 +5,82 @@
   "resourcePath": "customers",
   "apis": [
     {
+      "path": "v1/customers/{customer_id}/add_project/{project_id}",
+      "operations": [
+        {
+          "summary": "Adds a project to the customer",
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": "Cusomer",
+              "message": "Success"
+            },
+            {
+              "code": 400,
+              "responseModel": null,
+              "message": "Bad Request"
+            }
+          ],
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "project_id",
+              "type": "string",
+              "description": "Project's Id",
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "customer_id",
+              "type": "string",
+              "description": "Customer's Id",
+              "required": true
+            }
+          ],
+          "method": "post",
+          "nickname": "V1::Customers#add_project"
+        }
+      ]
+    },
+    {
+      "path": "v1/customers/{customer_id}/remove_project/{project_id}",
+      "operations": [
+        {
+          "summary": "Removes a project from the customer",
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": "Cusomer",
+              "message": "Success"
+            },
+            {
+              "code": 400,
+              "responseModel": null,
+              "message": "Bad Request"
+            }
+          ],
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "project_id",
+              "type": "string",
+              "description": "Project's Id",
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "customer_id",
+              "type": "string",
+              "description": "Customer's Id",
+              "required": true
+            }
+          ],
+          "method": "delete",
+          "nickname": "V1::Customers#remove_project"
+        }
+      ]
+    },
+    {
       "path": "v1/customers",
       "operations": [
         {
@@ -35,7 +111,7 @@
           "responseMessages": [
             {
               "code": 200,
-              "responseModel": "#<Class:0x0000010b200ec0>",
+              "responseModel": "#<Class:0x00000109209310>",
               "message": "Success"
             },
             {
@@ -66,7 +142,7 @@
           "responseMessages": [
             {
               "code": 200,
-              "responseModel": "#<Class:0x0000010b2200b8>",
+              "responseModel": "#<Class:0x0000010923ab40>",
               "message": "Success"
             },
             {
@@ -97,7 +173,7 @@
           "responseMessages": [
             {
               "code": 200,
-              "responseModel": "#<Class:0x0000010b230d50>",
+              "responseModel": "#<Class:0x00000109251a20>",
               "message": "Success"
             },
             {
@@ -135,7 +211,7 @@
           "responseMessages": [
             {
               "code": 200,
-              "responseModel": "#<Class:0x0000010b241330>",
+              "responseModel": "#<Class:0x00000109260250>",
               "message": "Success"
             },
             {
