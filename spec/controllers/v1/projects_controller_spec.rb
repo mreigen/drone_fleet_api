@@ -189,6 +189,156 @@ RSpec.describe V1::ProjectsController, type: :controller do
         delete_remove_craft(craft_id, project_id)
       end
     end
-  end # remove_project
+  end # remove_craft
+
+  describe "POST add_flight" do
+    let(:project)  { Project.new(type: "test project") }
+    let(:flight)   { Flight.new(project_id: "test_project_id", craft_id: "test_craft_id") }
+    before do
+      allow(Project).to receive(:find_by_guid) { project }
+      allow(Flight).to  receive(:find_by_guid) { flight }
+    end
+
+    def post_add_flight(flight_id, project_id)
+      post :add_flight, flight_id: flight_id, project_id: project_id
+    end
+
+    context "when there is no flight id provided" do
+      let(:flight_id)  { "" }
+      let(:project_id) { "123" }
+      it "renders error" do
+        expect(controller).to receive(:render_error)
+          .with("Either flight_id or project_id is blank").and_call_original
+        post_add_flight(flight_id, project_id)
+      end
+    end
+    context "when there is no project id provided" do
+      let(:flight_id)  { "abc" }
+      let(:project_id) { "" }
+      it "renders error" do
+        expect(controller).to receive(:render_error)
+          .with("Either flight_id or project_id is blank").and_call_original
+        post_add_flight(flight_id, project_id)
+      end
+    end
+    context "when there is no flight found" do
+      let(:flight_id)  { "abc" }
+      let(:project_id) { "123" }
+      before do
+        allow(Flight).to receive(:find_by_guid).with("abc")  { nil }
+      end
+      it "renders error" do
+        expect(controller).to receive(:render_error)
+          .with("Can't find flight with flight_id: abc").and_call_original
+        post_add_flight(flight_id, project_id)
+      end
+    end
+    context "when there is no project found" do
+      let(:flight_id)  { "abc" }
+      let(:project_id) { "123" }
+      before do
+        allow(Project).to receive(:find_by_guid).with("123") { nil }
+      end
+      it "renders error" do
+        expect(controller).to receive(:render_error)
+          .with("Can't find project with project_id: 123").and_call_original
+        post_add_flight(flight_id, project_id)
+      end
+    end
+    context "when both flight and project exist" do
+      let(:flight_id)  { "abc" }
+      let(:project_id) { "123" }
+      before do
+        allow(Project).to receive(:find_by_guid).with("123") { project }
+        allow(Flight).to receive(:find_by_guid).with("abc") { flight }
+      end
+      it "adds flight to project" do
+        post_add_flight(flight_id, project_id)
+
+        expect(flight.project).to eq project
+        expect(project.flights).to include flight
+      end
+      it "renders success" do
+        expect(controller).to receive(:render_success)
+          .with(result: {project: project, flights: project.flights}).and_call_original
+        post_add_flight(flight_id, project_id)
+      end
+    end
+  end # add_flight
+
+  describe "DELETE remove_flight" do
+    let(:project)  { Project.new(type: "test project") }
+    let(:flight)   { Flight.new(project_id: "test_project_id", craft_id: "test_craft_id") }
+    before do
+      allow(Project).to receive(:find_by_guid) { project }
+      allow(Flight).to  receive(:find_by_guid) { flight }
+    end
+
+    def delete_remove_flight(flight_id, project_id)
+      delete :remove_flight, flight_id: flight_id, project_id: project_id
+    end
+
+    context "when there is no flight id provided" do
+      let(:flight_id)  { "" }
+      let(:project_id) { "123" }
+      it "renders error" do
+        expect(controller).to receive(:render_error)
+          .with("Either flight_id or project_id is blank").and_call_original
+        delete_remove_flight(flight_id, project_id)
+      end
+    end
+    context "when there is no project id provided" do
+      let(:flight_id)  { "abc" }
+      let(:project_id) { "" }
+      it "renders error" do
+        expect(controller).to receive(:render_error)
+          .with("Either flight_id or project_id is blank").and_call_original
+        delete_remove_flight(flight_id, project_id)
+      end
+    end
+    context "when there is no flight found" do
+      let(:flight_id)  { "abc" }
+      let(:project_id) { "123" }
+      before do
+        allow(Flight).to receive(:find_by_guid).with("abc")  { nil }
+      end
+      it "renders error" do
+        expect(controller).to receive(:render_error)
+          .with("Can't find flight with flight_id: abc").and_call_original
+        delete_remove_flight(flight_id, project_id)
+      end
+    end
+    context "when there is no project found" do
+      let(:flight_id)  { "abc" }
+      let(:project_id) { "123" }
+      before do
+        allow(Project).to receive(:find_by_guid).with("123") { nil }
+      end
+      it "renders error" do
+        expect(controller).to receive(:render_error)
+          .with("Can't find project with project_id: 123").and_call_original
+        delete_remove_flight(flight_id, project_id)
+      end
+    end
+    context "when both flight and project exist" do
+      let(:flight_id)  { "abc" }
+      let(:project_id) { "123" }
+      before do
+        allow(Project).to receive(:find_by_guid).with("123") { project }
+        allow(Flight).to receive(:find_by_guid).with("abc") { flight }
+      end
+      it "adds flight to project" do
+        delete_remove_flight(flight_id, project_id)
+
+        expect(flight.project).to_not eq project
+        expect(project.flights).to_not include flight
+      end
+      it "renders success" do
+        expect(controller).to receive(:render_success)
+          .with(result: {project: project, flights: project.flights}).and_call_original
+        delete_remove_flight(flight_id, project_id)
+      end
+    end
+  end # remove_flight
 
 end

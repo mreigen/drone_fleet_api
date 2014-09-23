@@ -16,6 +16,8 @@ Rails.application.routes.draw do
     resources :projects do
       post    "add_craft/:craft_id"     => "projects#add_craft"
       delete  "remove_craft/:craft_id"  => "projects#remove_craft"
+      post    "add_flight/:flight_id"     => "projects#add_flight"
+      delete  "remove_flight/:flight_id"  => "projects#remove_flight"
     end
     resources :projects
 

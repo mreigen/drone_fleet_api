@@ -41,7 +41,7 @@ class V1::ProjectsController < ApplicationController
     else
       render_error "Can't add craft_id #{craft_id} to craft_id #{craft_id}"
     end
-  end
+  end # add_craft
 
   def remove_craft
     craft_id  = params[:craft_id]
@@ -70,7 +70,65 @@ class V1::ProjectsController < ApplicationController
     else
       render_error "Can't add craft_id #{craft_id} to craft_id #{craft_id}"
     end
-  end
+  end # remove_craft
+
+  def add_flight
+    flight_id    = params[:flight_id]
+    project_id  = params[:project_id]
+    if flight_id.blank? || project_id.blank?
+      render_error "Either flight_id or project_id is blank"
+      return
+    end
+
+    flight = Flight.find_by_guid(flight_id)
+    if flight.blank?
+      render_error "Can't find flight with flight_id: #{flight_id}"
+      return
+    end
+
+    project = Project.find_by_guid(project_id)
+    if project.blank?
+      render_error "Can't find project with project_id: #{project_id}"
+      return
+    end
+
+    flight.project = project
+
+    if flight.save
+      render_success result: {project: project, flights: project.flights}
+    else
+      render_error "Can't add flight_id #{flight_id} to project_id #{project_id}"
+    end
+  end # add_flight
+
+  def remove_flight
+    flight_id  = params[:flight_id]
+    project_id = params[:project_id]
+    if project_id.blank? || flight_id.blank?
+      render_error "Either flight_id or project_id is blank"
+      return
+    end
+
+    flight = Flight.find_by_guid(flight_id)
+    if flight.blank?
+      render_error "Can't find flight with flight_id: #{flight_id}"
+      return
+    end
+
+    project = Project.find_by_guid(project_id)
+    if project.blank?
+      render_error "Can't find project with project_id: #{project_id}"
+      return
+    end
+
+    project.flights.delete_if {|f| f == flight}
+
+    if project.save
+      render_success result: {project: project, flights: project.flights}
+    else
+      render_error "Can't add flight_id #{flight_id} to project_id #{project_id}"
+    end
+  end # remove_flight
 
   private
 
