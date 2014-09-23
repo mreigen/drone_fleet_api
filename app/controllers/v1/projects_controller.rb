@@ -10,7 +10,7 @@ class V1::ProjectsController < ApplicationController
   # are implemented here.
   # ===================================================================
 
-  def create; super(:type, :craft_id); end
+  def create; super(:type); end
 
   def show; super(sub_set: :crafts); end
 
