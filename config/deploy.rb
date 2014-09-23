@@ -17,10 +17,6 @@ namespace :deploy do
   end
 
   after :finishing, 'deploy:cleanup'
-
-  task :cleanup do
-    execute :rake, "swagger:docs"
-  end
 end
 
 set :linked_files, %w{config/mongoid.yml}

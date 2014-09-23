@@ -8,7 +8,7 @@ Swagger::Docs::Config.register_apis({
     # hack with localhost env and ip
     :base_path => ENV['LOCALHOST'] == "true" ? "http://localhost:2001/" : "http://74.207.247.126:3001/",
     # if you want to delete all .json files at each generation
-    :clean_directory => false,
+    :clean_directory => true,
     # add custom attributes to api-docs
     :attributes => {
       :info => {
