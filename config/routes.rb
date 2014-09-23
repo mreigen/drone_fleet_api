@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
     resources :customers do
       post "add_project/:project_id" => "customers#add_project"
+      delete "remove_project/:project_id" => "customers#remove_project"
     end
 
     resources :customers
