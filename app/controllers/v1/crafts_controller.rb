@@ -4,7 +4,21 @@ class V1::CraftsController < ApplicationController
 
   before_filter :set_klass
 
+  # ===================================================================
+  # The rest of the common actions are implemented inside BasicAtions.
+  # Only actions that are taylored to the need of this controller
+  # are implemented here.
+  # ===================================================================
+
   def create; super(:type, :max_speed); end
+
+  def add_flight
+    # TODO
+  end
+
+  def remove_flight
+    # TODO
+  end
 
   private
 
