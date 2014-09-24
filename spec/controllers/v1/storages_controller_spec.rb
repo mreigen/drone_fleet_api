@@ -1,5 +1,10 @@
 require "spec_helper"
 
+# ================================================================================
+# The sharable tests are refactored and locate inside common_actions_controller_spec.rb.
+# The tests below are for the custom actions of this controller.
+# ================================================================================
+
 RSpec.describe V1::StoragesController, type: :controller do
   let(:storage_1) { Storage.new(access_key: "some_key", access_password: "some_password", customer_id: 234) }
 

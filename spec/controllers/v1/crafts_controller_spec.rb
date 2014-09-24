@@ -1,5 +1,10 @@
 require "spec_helper"
 
+# ================================================================================
+# The sharable tests are refactored and locate inside common_actions_controller_spec.rb.
+# The tests below are for the custom actions of this controller.
+# ================================================================================
+
 RSpec.describe V1::CraftsController, type: :controller do
   let(:craft_1) { Craft.new }
 

@@ -1,5 +1,10 @@
 require "spec_helper"
 
+# ================================================================================
+# The sharable tests are refactored and locate inside common_actions_controller_spec.rb.
+# The tests below are for the custom actions of this controller.
+# ================================================================================
+
 RSpec.describe V1::FlightsController, type: :controller do
   let(:flight_1) { Flight.new(project_id: 456, craft_id: 678) }
 

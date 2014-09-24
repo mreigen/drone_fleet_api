@@ -39,7 +39,7 @@ class V1::ProjectsController < ApplicationController
     if craft.save
       render_success result: {project: project, crafts: project.crafts}
     else
-      render_error "Can't add craft_id #{craft_id} to craft_id #{craft_id}"
+      render_error "Can't add craft_id #{craft_id} to project_id #{project_id}"
     end
   end # add_craft
 
@@ -68,7 +68,7 @@ class V1::ProjectsController < ApplicationController
     if project.save
       render_success result: {project: project, crafts: project.crafts}
     else
-      render_error "Can't add craft_id #{craft_id} to craft_id #{craft_id}"
+      render_error "Can't remove craft_id #{craft_id} from project_id #{project_id}"
     end
   end # remove_craft
 
@@ -126,7 +126,7 @@ class V1::ProjectsController < ApplicationController
     if project.save
       render_success result: {project: project, flights: project.flights}
     else
-      render_error "Can't add flight_id #{flight_id} to project_id #{project_id}"
+      render_error "Can't remove flight_id #{flight_id} from project_id #{project_id}"
     end
   end # remove_flight
 

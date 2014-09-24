@@ -1,5 +1,10 @@
 require "spec_helper"
 
+# ================================================================================
+# The sharable tests are refactored and locate inside common_actions_controller_spec.rb.
+# The tests below are for the custom actions of this controller.
+# ================================================================================
+
 RSpec.describe V1::ProjectsController, type: :controller do
   let(:project_1) { Project.new }
   let(:crafts) { [double("many_crafts")] }
@@ -102,6 +107,14 @@ RSpec.describe V1::ProjectsController, type: :controller do
         allow(Project).to receive(:find_by_guid).with("123") { project }
         allow(Craft).to receive(:find_by_guid).with("abc") { craft }
       end
+      context "when can't save record" do
+        it "renders error" do
+          allow(craft).to receive(:save) { false }
+          expect(controller).to receive(:render_error)
+            .with("Can't add craft_id abc to project_id 123").and_call_original
+          post_add_craft(craft_id, project_id)
+        end
+      end
       it "adds craft to project" do
         post_add_craft(craft_id, project_id)
 
@@ -176,6 +189,14 @@ RSpec.describe V1::ProjectsController, type: :controller do
       before do
         allow(Project).to receive(:find_by_guid).with("123") { project }
         allow(Craft).to receive(:find_by_guid).with("abc") { craft }
+      end
+      context "when can't save record" do
+        it "renders error" do
+          allow(project).to receive(:save) { false }
+          expect(controller).to receive(:render_error)
+            .with("Can't remove craft_id abc from project_id 123").and_call_original
+          delete_remove_craft(craft_id, project_id)
+        end
       end
       it "adds craft to project" do
         delete_remove_craft(craft_id, project_id)
@@ -252,6 +273,14 @@ RSpec.describe V1::ProjectsController, type: :controller do
         allow(Project).to receive(:find_by_guid).with("123") { project }
         allow(Flight).to receive(:find_by_guid).with("abc") { flight }
       end
+      context "when can't save record" do
+        it "renders error" do
+          allow(flight).to receive(:save) { false }
+          expect(controller).to receive(:render_error)
+            .with("Can't add flight_id abc to project_id 123").and_call_original
+          post_add_flight(flight_id, project_id)
+        end
+      end
       it "adds flight to project" do
         post_add_flight(flight_id, project_id)
 
@@ -326,6 +355,14 @@ RSpec.describe V1::ProjectsController, type: :controller do
       before do
         allow(Project).to receive(:find_by_guid).with("123") { project }
         allow(Flight).to receive(:find_by_guid).with("abc") { flight }
+      end
+      context "when can't save record" do
+        it "renders error" do
+          allow(project).to receive(:save) { false }
+          expect(controller).to receive(:render_error)
+            .with("Can't remove flight_id abc from project_id 123").and_call_original
+          delete_remove_flight(flight_id, project_id)
+        end
       end
       it "adds flight to project" do
         delete_remove_flight(flight_id, project_id)
