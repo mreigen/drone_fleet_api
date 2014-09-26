@@ -17,3 +17,6 @@
 coverage/*
 doc/*
 bin/*
+.ruby-gemset
+
+.ruby-version
