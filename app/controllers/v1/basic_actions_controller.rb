@@ -1,4 +1,5 @@
 class V1::BasicActionsController < ApplicationController
+  include Klassable
 
   before_action :set_model_object, except: [:create]
 
@@ -79,7 +80,7 @@ class V1::BasicActionsController < ApplicationController
   def klass_name; @klass_name; end
 
   def set_model_object
-    @klass_name  = self.class.to_s.gsub(/V.+::/,"").gsub(/Controller$/,"").singularize.classify
+    @klass_name  = klass_name_from_controller_class(self)
     @klass       = @klass_name.constantize
 
     @model_object = @klass.find_by_guid(params[:id])

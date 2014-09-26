@@ -1,7 +1,8 @@
 module V1::SwaggerBasicActionsConfig
+  include Klassable
 
   def swagger_configure_basic_actions
-    klass_name  = self.to_s.gsub(/V.+::/,"").gsub(/Controller$/,"").singularize.classify
+    klass_name  = klass_name_from_controller_class(self)
     klass       = klass_name.constantize
 
     swagger_controller :"#{klass_name}s", "#{klass_name} Management"

@@ -6,10 +6,6 @@ require "spec_helper"
   controller_klass  = "V1::#{klass_name}sController".constantize
 
   RSpec.describe controller_klass, type: :controller do
-    before(:example) do
-      allow(V1::BasicActions).to receive(:get_klass) { model_klass }
-    end
-
     let(:model_object_1) { model_klass.new }
     let(:model_object_2) { model_klass.new }
     let(:all_model_objects) {[ model_object_1, model_object_2]}
