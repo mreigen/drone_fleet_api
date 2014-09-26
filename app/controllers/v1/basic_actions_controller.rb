@@ -1,33 +1,22 @@
-module V1::BasicActions
+class V1::BasicActionsController < ApplicationController
 
-  # to set the model's class which is to be used in this controller
-  def self.set_klass(model_name)
-    @klass = model_name.to_s.classify.constantize
-  end
-
-  def self.get_klass; @klass; end
-
-  # for internal use, for code aesthetic
-  def klass
-    V1::BasicActions.get_klass
-  end
+  before_action :set_model_object, except: [:create]
 
   def index
     render_success(result: klass.all)
   end
 
   def show(sub_set_hsh = nil)
-    model_object = klass.find_by_guid(params[:id])
-    if model_object.blank?
+    if @model_object.blank?
       render_error("Can't find #{klass} with id: #{params[:id]}")
       return
     end
-    data = {result: model_object}
+    data = {result: @model_object}
     # if there is a sub_set passed in, include the sub_set (children) data
     # in the response
     if sub_set_hsh.present?
       sub_set_klass = sub_set_hsh[:sub_set].to_s.classify.constantize
-      data.merge!(sub_set_hsh[:sub_set].to_sym => model_object.children)
+      data.merge!(sub_set_hsh[:sub_set].to_sym => @model_object.children)
     end
     render_success(data)
   end
@@ -53,13 +42,8 @@ module V1::BasicActions
 
   def destroy
     id = params[:id]
-    if id.blank?
-      render_error("Missing #{klass}'s id", :bad_request)
-      return
-    end
-
-    if model_object = klass.find_by_guid(id)
-      if model_object.delete
+    if @model_object
+      if @model_object.delete
         render_success(result: "The #{klass} with id: #{id} has been deleted")
       else
         render_error("Failed to delete a #{klass} with #{id}", :bad_request)
@@ -71,14 +55,9 @@ module V1::BasicActions
 
   def update
     id = params[:id]
-    if id.blank?
-      render_error("Missing #{klass}'s id", :bad_request)
-      return
-    end
-
-    if model_object = klass.find_by_guid(id)
-      if model_object.update_attributes(klass_params)
-        render_success(result: model_object)
+    if @model_object
+      if @model_object.update_attributes(klass_params)
+        render_success(result: @model_object)
       else
         render_error("Couldn't update the #{klass} with id: #{id}", :bad_request)
       end
@@ -96,9 +75,20 @@ module V1::BasicActions
 
   private
 
+  def klass; @klass; end
+  def klass_name; @klass_name; end
+
+  def set_model_object
+    @klass_name  = self.class.to_s.gsub(/V.+::/,"").gsub(/Controller$/,"").singularize.classify
+    @klass       = @klass_name.constantize
+
+    @model_object = @klass.find_by_guid(params[:id])
+  end
+
   def create_with_refined_params(create_params)
     return false unless create_params.present?
     model_object = klass.new(create_params)
     model_object.save ? model_object : nil
   end
+
 end
