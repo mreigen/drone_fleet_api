@@ -1,11 +1,9 @@
-class V1::CraftsController < ApplicationController
-  include V1::BasicActions
-  extend  V1::SwaggerBasicActionsConfig
-
-  before_filter :set_klass
+class V1::CraftsController < V1::BasicActionsController
+  extend V1::SwaggerBasicActionsConfig
 
   # ===================================================================
-  # The rest of the common actions are implemented inside BasicAtions.
+  # The rest of the common actions are implemented inside BasicActionsController.
+  # - similar to the deprecated Inherited Resources :(
   # Only actions that are taylored to the need of this controller
   # are implemented here.
   # ===================================================================
@@ -21,8 +19,6 @@ class V1::CraftsController < ApplicationController
   end
 
   private
-
-  def set_klass; V1::BasicActions.set_klass(:craft); end
 
   swagger_configure_basic_actions
   #

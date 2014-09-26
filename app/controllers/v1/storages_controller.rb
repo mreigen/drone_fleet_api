@@ -1,12 +1,10 @@
-class V1::StoragesController < ApplicationController
-  include V1::BasicActions
+class V1::StoragesController < V1::BasicActionsController
   extend Searchable
-  extend  V1::SwaggerBasicActionsConfig
-
-  before_filter :set_klass
+  extend V1::SwaggerBasicActionsConfig
 
   # ===================================================================
-  # The rest of the common actions are implemented inside BasicAtions.
+  # The rest of the common actions are implemented inside BasicActionsController.
+  # - similar to the deprecated Inherited Resources :(
   # Only actions that are taylored to the need of this controller
   # are implemented here.
   # ===================================================================
@@ -16,8 +14,6 @@ class V1::StoragesController < ApplicationController
   end
 
   private
-
-  def set_klass; V1::BasicActions.set_klass(:storage); end
 
   swagger_configure_basic_actions
 end

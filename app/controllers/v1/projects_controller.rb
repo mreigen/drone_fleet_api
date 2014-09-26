@@ -1,11 +1,9 @@
-class V1::ProjectsController < ApplicationController
-  include V1::BasicActions
+class V1::ProjectsController < V1::BasicActionsController
   extend  V1::SwaggerBasicActionsConfig
 
-  before_filter :set_klass
-
   # ===================================================================
-  # The rest of the common actions are implemented inside BasicAtions.
+  # The rest of the common actions are implemented inside BasicActionsController.
+  # - similar to the deprecated Inherited Resources :(
   # Only actions that are taylored to the need of this controller
   # are implemented here.
   # ===================================================================
@@ -131,11 +129,6 @@ class V1::ProjectsController < ApplicationController
   end # remove_flight
 
   private
-
-  def set_klass
-    V1::BasicActions.set_klass(:project)
-  end
-
 
   swagger_configure_basic_actions
   #
